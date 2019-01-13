@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Success! | Spotify Easy Authentication</title>
+    <meta name="description" content="A cool thing made with Glitch">
+    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <header>
+      <h1>
+        All done!
+      </h1>
+    </header>
+
+    <main>
+      <p class="bold">Yeah buddy,</p>
+      <p>You successfully authenticated with Spotify 👏</p>
+      <canvas id="can">
+      </canvas>
+      <script>
+      var xx=[];
+        {{#each message}}
+          xx.push("{{this}}");
+        {{/each}}
+      console.log(xx);
+      </script>
+      <ul>
+        {{#each message}}
+          <li>{{this}}</li>
+        {{/each}}
+      </ul>
+    </main>
+
+    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>    
+
+    <script src="https://button.glitch.me/button.js" data-style="glitch"></script>
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"
+            integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
+            crossorigin="anonymous"></script>
+    <script src="/client.js"></script>
+
+  </body>
+</html>

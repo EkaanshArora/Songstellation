@@ -1,0 +1,25 @@
+{
+  "name": "spotify-oauth",
+  "version": "0.0.1",
+  "description": "Easy authentication for Spotify",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "hbs": "^4.0.1",
+    "spotify-web-api-node": "^4.0.0",
+    "canvas": "^2.2.0"
+  },
+  "engines": {
+    "node": "8.x"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "glitch",
+    "spotify",
+    "express"
+  ]
+}

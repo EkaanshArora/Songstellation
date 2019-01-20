@@ -58,18 +58,27 @@ a {
 
 p {
     text-align: center;
-    font-size: 1em;
-    padding: 5vw;
+    font-size: 1.3em;
+    padding: 4vw;
 }
 
 h1 {
     text-align: center;
-    margin-top: 1.5em;
+    margin-top: 1.2em;
     padding: 10vh;
+    font-size: 2.5em;
 }
 
 .button {
     text-align: center;
     margin: auto;
     margin-top: 10vh;
+}
+#footer{
+  position: absolute;
+  bottom: 5vh;
+  right: 5vw;
+}
+#byline{
+  font-size: 1.3em;
 }

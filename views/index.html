@@ -2,14 +2,17 @@
 <html>
 
 <head>
-    <title>Spotify Easy Authentication</title>
+    <title>Spotify Constellation</title>
     <script src="https://github.com/thenextweb/constellation/releases/download/v1.5.5/constellation.min.js"></script>
-    <meta name="description" content="A cool thing made with Glitch">
+    <meta name="description" content="Make a constellation out of your spotify top ten tracks - Ekaansh Arora">
     <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/style.css">
+    <meta name="theme-color" content="#101025">
+    <meta name="msapplication-navbutton-color" content="#101025">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#101025">
 </head>
 
 <body>
@@ -17,19 +20,22 @@
     <canvas id="canvas-layer-0"></canvas>
     <canvas id="canvas-layer-1" width="1000"></canvas>
     <canvas id="canvas-layer-2" width="1000"></canvas>
-    <h1>
-        Song Constellation
+    <h1 id="titlehead">
+        Spotify Constellation
     </h1>
-    <p>
+    <p id="byline">
         Generate a custom animated constellation based on your top spotify tracks. Made using Spotify API and
-        <a href="https://github.com/thenextweb/constellation">constellation-canvas.</a>
+      <a href="https://github.com/thenextweb/constellation">constellation-canvas</a>
+      on <a href="https://glitch.me">glitch.me</a>
     </p>
     <a href="/authorize">
-        <div class="button">Generate constellation!</div>
+        <div class="button" id="btn">Generate constellation!</div>
     </a>
     <script>
-        var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-        var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+        //var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+        //var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+        var w = document.documentElement.clientWidth;
+        var h = document.documentElement.clientHeight;      
         var c = document.getElementById("canvas-layer-0");
         c.height = h;
         c.width = w;
@@ -68,13 +74,13 @@
             speedAfterCheck = 0.06;
         if (isMobile.any()) {
             fontSize = "35px";
-            starSizeAfterCheck1 = 2.5;
-            starSizeAfterCheck2 = 1.5;
+            starSizeAfterCheck1 = 1.8;
+            starSizeAfterCheck2 = 1;
             starSizeAfterCheck3 = 7;
             lineSizeAfterCheck = 3;
-            document.getElementById("page-title").style.fontSize = "4em";
-            document.getElementById("page-title").style.marginTop = "2em";
-            speedAfterCheck = 0.1
+            document.getElementById("btn").style.fontSize = "1.2em";
+            document.getElementById("titlehead").style.marginTop = "0.4em";
+            document.getElementById("byline").style.fontSize = "1.1em";
         }
         var constellationInstance1 = window.constellation({
             size: [w, h],
@@ -124,6 +130,9 @@
             }
         });
     </script>
+  </div>
+  <div id="footer">
+    Made by <a href="http://ekaansharora.github.io">Ekaansh Arora</a>
   </div>
 </body>
 </html>

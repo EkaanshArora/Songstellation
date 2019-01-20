@@ -6,6 +6,9 @@
   <title>Songstellation</title>
   <script src="https://github.com/thenextweb/constellation/releases/download/v1.5.5/constellation.min.js"></script>
   <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+  <meta name="theme-color" content="#101025">
+  <meta name="msapplication-navbutton-color" content="#101025">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#101025">
 </head>
 
 <body>
@@ -14,9 +17,12 @@
       background-color: black;
       color: white
     }
-
+    a {
+    color: white;
+    }
     body {
-      margin: 0
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     #canvas-layer-0 {
@@ -46,13 +52,20 @@
       text-align: center;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
+    
+    #footer{
+      position: absolute;
+      bottom: 5vh;
+      right: 5vw;
+      font-size: 1.1em;
+    }
   </style>
   <canvas id="canvas-layer-0"></canvas>
   <canvas id="canvas-layer-1" width="1000"></canvas>
   <canvas id="canvas-layer-2" width="1000"></canvas>
   <header>
     <h1 id="page-title">
-      Song Constellation
+      Spotify Constellation
     </h1>
   </header>
   <main>
@@ -113,7 +126,7 @@
         lineSizeAfterCheck=3;
         document.getElementById("page-title").style.fontSize = "4em";
         document.getElementById("page-title").style.marginTop = "2em";
-        speedAfterCheck=0.1
+        speedAfterCheck=0.3;
       }
       function writeText(x, y, text, ctx) {
         ctx.font = fontSize+" sans-serif";
@@ -152,10 +165,10 @@
       canvas.height = canvas.width * aspectRatio;
 
       var constellationInstance2 = window.constellation({
-        size: [canvas.width, canvas.height],
+        size: [w, h],
         canvas: document.getElementById('canvas-layer-2'),
         padding: [-50, -50],
-        starCount: 100,
+        starCount: 150,
         lineCount: 0,
         fuzziness: 10,
         speed: {
@@ -205,10 +218,13 @@
       });
       constellationInstance.then(() => {
         document.getElementById("can").style.width = "80vw";
-        document.getElementById("can").style.height = "85vh"//"100vh"+"-"+canvas.offsetTop;
-        console.log("done");
+        document.getElementById("can").style.height = "80vh"//"100vh"+"-"+canvas.offsetTop;
+        console.log(speedAfterCheck);
       });
     </script>
+    <div id="footer">
+    Made by <a href="http://ekaansharora.github.io">Ekaansh Arora</a>
+  </div>
   </main>
 </body>
 

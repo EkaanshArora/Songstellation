@@ -21,6 +21,10 @@ app.get("/", function (request, response) {
     response.sendFile(__dirname + '/views/index.html');
 });
 
+app.get("/test", function (request, response) {
+    response.sendFile(__dirname + '/views/test.html');
+});
+
 app.get("/authorize", function (request, response) {
     var scopesArray = ["user-top-read"]
     var authorizeURL = spotifyApi.createAuthorizeURL(scopesArray);
@@ -59,29 +63,33 @@ app.get("/callback", function (request, response) {
                             })
                                 .then(function (data) {
                                     console.log(data.body.items);
-                                    var tracktitlelist = [];
-                                    var urilist = [];
-                                    var genrelist = [];
+                                    var tracks = [];
+                                    var artists = [];
                                     for (var x in data.body.items) {
                                         var val = data.body.items[x];
-                                        urilist.push(val.artists[0].id);
-                                        tracktitlelist.push(val.name);
+                                        artists.push(val.artists[0].name);
+                                        tracks.push(val.name);
                                     }
-                                    dataToSendObj = { 'message': tracktitlelist };
+                                    dataToSendObj = {
+                                        'tracks': tracks,
+                                        'artists':artists
+                                                    };
                                     response.render(__dirname + '/views/callback.html', dataToSendObj);
                                 })
                         }
                         else {
                             console.log(data.body.items);
-                            var tracktitlelist = [];
-                            var urilist = [];
-                            var genrelist = [];
+                            var tracks = [];
+                            var artists = [];
                             for (var x in data.body.items) {
                                 var val = data.body.items[x];
-                                urilist.push(val.artists[0].id);
-                                tracktitlelist.push(val.name);
+                                artists.push(val.artists[0].name);
+                                tracks.push(val.name);
                             }
-                            dataToSendObj = { 'message': tracktitlelist };
+                            dataToSendObj = {
+                                'tracks': tracks,
+                                'artists':artists
+                                            };
                             response.render(__dirname + '/views/callback.html', dataToSendObj);
                         }
                     })

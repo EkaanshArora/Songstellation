@@ -3,23 +3,20 @@
 
 <head>
     <title>Spotify Constellation</title>
-    <script src="https://github.com/thenextweb/constellation/releases/download/v1.5.5/constellation.min.js"></script>
     <meta name="description" content="Make a constellation out of your spotify top ten tracks - Ekaansh Arora">
+    <meta name="author" content="Ekaansh Arora" />
     <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/style.css">
-    <meta name="theme-color" content="#101025">
-    <meta name="msapplication-navbutton-color" content="#101025">
-    <meta name="apple-mobile-web-app-status-bar-style" content="#101025">
+    <meta name="theme-color" content="#000">
+    <meta name="msapplication-navbutton-color" content="#000">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#000">
 </head>
 
 <body>
-    <div id="main">
-    <canvas id="canvas-layer-0"></canvas>
-    <canvas id="canvas-layer-1" width="1000"></canvas>
-    <canvas id="canvas-layer-2" width="1000"></canvas>
+    <div id="bg-layer-0"></div>
     <h1 id="titlehead">
         Spotify Constellation
     </h1>
@@ -31,108 +28,11 @@
     <a href="/authorize">
         <div class="button" id="btn">Generate constellation!</div>
     </a>
-    <script>
-        //var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-        //var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-        var w = document.documentElement.clientWidth;
-        var h = document.documentElement.clientHeight;      
-        var c = document.getElementById("canvas-layer-0");
-        c.height = h;
-        c.width = w;
-        var ctx = c.getContext("2d");
-        var grd = ctx.createLinearGradient(0, 0, w, h);
-        grd.addColorStop(0, "#020715");
-        grd.addColorStop(1, "#101025");
-        ctx.fillStyle = grd;
-        ctx.fillRect(0, 0, w, h);
-
-        var isMobile = {
-            Android: function () {
-                return navigator.userAgent.match(/Android/i);
-            },
-            BlackBerry: function () {
-                return navigator.userAgent.match(/BlackBerry/i);
-            },
-            iOS: function () {
-                return navigator.userAgent.match(/iPhone|iPad|iPod/i);
-            },
-            Opera: function () {
-                return navigator.userAgent.match(/Opera Mini/i);
-            },
-            Windows: function () {
-                return navigator.userAgent.match(/IEMobile/i);
-            },
-            any: function () {
-                return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
-            }
-        };
-        var fontSize = "20px",
-            starSizeAfterCheck1 = 1,
-            starSizeAfterCheck2 = 2,
-            starSizeAfterCheck3 = 3,
-            lineSizeAfterCheck = 1,
-            speedAfterCheck = 0.06;
-        if (isMobile.any()) {
-            fontSize = "35px";
-            starSizeAfterCheck1 = 1.8;
-            starSizeAfterCheck2 = 1;
-            starSizeAfterCheck3 = 7;
-            lineSizeAfterCheck = 3;
-            document.getElementById("btn").style.fontSize = "1.2em";
-            document.getElementById("titlehead").style.marginTop = "0.4em";
-            document.getElementById("byline").style.fontSize = "1.1em";
-        }
-        var constellationInstance1 = window.constellation({
-            size: [w, h],
-            canvas: document.getElementById('canvas-layer-1'),
-            padding: [-50, -50],
-            starCount: 200,
-            lineCount: 0,
-            fuzziness: 10,
-            speed: {
-                active: 0,
-                passive: speedAfterCheck
-            },
-            style: {
-                starColor: '#fff',
-                lineColor: 'rgba(255,255,255,.5)',
-                lineSize: 1,
-                starPadding: 0,
-                starSize: starSizeAfterCheck1
-            },
-            afterStar: (ctx, style, star) => {
-                ctx.shadowBlur = 7;
-                ctx.shadowColor = "white";
-            }
-        });
-
-        var constellationInstance2 = window.constellation({
-            size: [w, h],
-            canvas: document.getElementById('canvas-layer-2'),
-            padding: [-50, -50],
-            starCount: 100,
-            lineCount: 0,
-            fuzziness: 10,
-            speed: {
-                active: 0,
-                passive: speedAfterCheck
-            },
-            style: {
-                starColor: '#fff',
-                lineColor: 'rgba(255,255,255,.5)',
-                lineSize: 1,
-                starPadding: 0,
-                starSize: starSizeAfterCheck2
-            },
-            afterStar: (ctx, style, star) => {
-                ctx.shadowBlur = 15;
-                ctx.shadowColor = "white";
-            }
-        });
-    </script>
-  </div>
+  
   <div id="footer">
     Made by <a href="http://ekaansharora.github.io">Ekaansh Arora</a>
   </div>
+  <script src="/particles.min.js"></script>
+  <script src="/indexapp.js"></script>
 </body>
 </html>

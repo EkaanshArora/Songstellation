@@ -1,0 +1,44 @@
+html {
+  background-color: black;
+  color: white;
+  text-align: center;
+  font-family: sans-serif;
+  overflow-y: hidden;
+}
+#particles-js{
+  text-align: center;
+  width: 75vw;
+  height: 80vh;
+  margin: auto;
+  z-index: 2;
+}
+#bg-layer-0{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none
+}
+#save{
+  text-align: center;
+  cursor: pointer;
+  text-decoration: underline;
+}
+#save:visited{
+  color:white;
+}
+#save:active{
+  color:white;
+}
+#save:link {
+   color: white;
+}
+#canvas-save{
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 0;
+}

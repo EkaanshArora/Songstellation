@@ -3,229 +3,65 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Songstellation</title>
-  <script src="https://github.com/thenextweb/constellation/releases/download/v1.5.5/constellation.min.js"></script>
+  <title>Spotify Constellation</title>
+  <meta name="description" content="Make a constellation out of your spotify top ten tracks - Ekaansh Arora">
   <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
-  <meta name="theme-color" content="#101025">
-  <meta name="msapplication-navbutton-color" content="#101025">
-  <meta name="apple-mobile-web-app-status-bar-style" content="#101025">
+  <meta name="author" content="Ekaansh Arora" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" media="screen" href="/teststyle.css">
+  <meta name="theme-color" content="#000">
+  <meta name="msapplication-navbutton-color" content="#000">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#000">
 </head>
 
 <body>
-  <style>
-    html {
-      background-color: black;
-      color: white
-    }
-    a {
-    color: white;
-    }
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    #canvas-layer-0 {
-      z-index: -1;
-      position: absolute;
-      top: 0
-    }
-
-    #canvas-layer-1 {
-      z-index: 1;
-      position: absolute;
-      top: 0
-    }
-
-    #canvas-layer-2 {
-      z-index: 2;
-      position: absolute;
-      top: 0
-    }
-
-    #can {
-      z-index: 3;
-      margin: 0 5vw 0 5vw;
-    }
-
-    h1 {
-      text-align: center;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    
-    #footer{
-      position: absolute;
-      bottom: 5vh;
-      right: 5vw;
-      font-size: 1.1em;
-    }
-  </style>
-  <canvas id="canvas-layer-0"></canvas>
-  <canvas id="canvas-layer-1" width="1000"></canvas>
-  <canvas id="canvas-layer-2" width="1000"></canvas>
-  <header>
-    <h1 id="page-title">
-      Spotify Constellation
-    </h1>
-  </header>
-  <main>
-    <div>
-      <canvas id="can" width="900">
-      </canvas>
-    </div>
-    <script>
-      var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-      var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-      var c = document.getElementById("canvas-layer-0");
-      c.height = h;
-      c.width = w;
-      var ctx = c.getContext("2d");
-      var grd = ctx.createLinearGradient(0, 0, w, h);
-      grd.addColorStop(0, "#020715");
-      grd.addColorStop(1, "#101025");
-      ctx.fillStyle = grd;
-      ctx.fillRect(0, 0, w, h);
-
-      var songTitles = [];
-        {{#each message}}
-          songTitles.push("{{this}}");
+  <h1>
+    Spotify Constellation
+  </h1>
+  <a id="save">
+    (Download png)
+  </a>
+  <!-- particles.js container -->
+  <div id="particles-js"></div>
+  <div id="bg-layer-0"></div>
+  <canvas id="canvas-save"></canvas>
+  <script>
+    let titleArray = [];
+        {{#each tracks}}
+          titleArray.push("{{this}}");
         {{/each}}
-      
-      var isMobile = {
-        Android: function() {
-          return navigator.userAgent.match(/Android/i);
-        },
-        BlackBerry: function() {
-          return navigator.userAgent.match(/BlackBerry/i);
-        },
-        iOS: function() {
-          return navigator.userAgent.match(/iPhone|iPad|iPod/i);
-        },
-        Opera: function() {
-          return navigator.userAgent.match(/Opera Mini/i);
-        },
-        Windows: function() {
-          return navigator.userAgent.match(/IEMobile/i);
-        },
-        any: function() {
-          return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
-        }
-      };
-      var fontSize="20px",
-      starSizeAfterCheck1=1,
-      starSizeAfterCheck2=2,
-      starSizeAfterCheck3=3,
-      lineSizeAfterCheck=1,
-      speedAfterCheck=0.06;
-      if(isMobile.any())
-      {
-        fontSize="35px";
-        starSizeAfterCheck1=2.5;
-        starSizeAfterCheck2=1.5;
-        starSizeAfterCheck3=7;
-        lineSizeAfterCheck=3;
-        document.getElementById("page-title").style.fontSize = "4em";
-        document.getElementById("page-title").style.marginTop = "2em";
-        speedAfterCheck=0.3;
-      }
-      function writeText(x, y, text, ctx) {
-        ctx.font = fontSize+" sans-serif";
-        ctx.fillStyle = "white";
-        ctx.textAlign = "center";
-        ctx.shadowBlur = 0;
-        ctx.fillText(text, x, y + 20);
-      }
-
-      var constellationInstance1 = window.constellation({
-        size: [w, h],
-        canvas: document.getElementById('canvas-layer-1'),
-        padding: [-50, -50],
-        starCount: 200,
-        lineCount: 0,
-        fuzziness: 10,
-        speed: {
-          active: 0,
-          passive: speedAfterCheck
-        },
-        style: {
-          starColor: '#fff',
-          lineColor: 'rgba(255,255,255,.5)',
-          lineSize: 1,
-          starPadding: 0,
-          starSize: starSizeAfterCheck1
-        },
-        afterStar: (ctx, style, star) => {
-          ctx.shadowBlur = 7;
-          ctx.shadowColor = "white";
-        }
-      });
-
-      var canvas = document.getElementById('can');
-      var aspectRatio = 0.7;
-      canvas.height = canvas.width * aspectRatio;
-
-      var constellationInstance2 = window.constellation({
-        size: [w, h],
-        canvas: document.getElementById('canvas-layer-2'),
-        padding: [-50, -50],
-        starCount: 150,
-        lineCount: 0,
-        fuzziness: 10,
-        speed: {
-          active: 0,
-          passive: speedAfterCheck
-        },
-        style: {
-          starColor: '#fff',
-          lineColor: 'rgba(255,255,255,.5)',
-          lineSize: 1,
-          starPadding: 0,
-          starSize: starSizeAfterCheck2
-        },
-        afterStar: (ctx, style, star) => {
-          ctx.shadowBlur = 15;
-          ctx.shadowColor = "white";
-        }
-      });
-      var constellationInstance = window.constellation({
-        size: [w - 50, h - 50],
-        canvas: document.getElementById('can'),
-        padding: [100, 100],
-        starCount: 10,
-        lineCount: 15,
-        fuzziness: 10,
-        speed: {
-          active: 0,
-          passive: speedAfterCheck
-        },
-        style: {
-          starColor: '#fff',
-          lineColor: 'rgba(255,255,255,.5)',
-          lineSize: lineSizeAfterCheck,
-          starPadding: 0,
-          starSize: starSizeAfterCheck3
-        },
-        onDraw: {
-          afterFrame: (ctx, style, objects) => {
-            for (var i = 0; i < 10; i++)
-              writeText(objects.stars[i].pos[0], objects.stars[i].pos[1], songTitles[i], ctx)
-          },
-          afterStar: (ctx, style, star) => {
-            ctx.shadowBlur = 25;
-            ctx.shadowColor = "white";
-          }
-        }
-      });
-      constellationInstance.then(() => {
-        document.getElementById("can").style.width = "80vw";
-        document.getElementById("can").style.height = "80vh"//"100vh"+"-"+canvas.offsetTop;
-        console.log(speedAfterCheck);
-      });
-    </script>
-    <div id="footer">
-    Made by <a href="http://ekaansharora.github.io">Ekaansh Arora</a>
-  </div>
-  </main>
+    let artistArray = [];
+        {{#each artists}}
+          artistArray.push("{{this}}");
+        {{/each}}
+  </script>
+  <!-- scripts -->
+  <script src="/particles.js"></script>
+  <script src="/particles.min.js"></script>
+  <script src="/app.js"></script>
+  <script>
+    function saveCanvas()
+    {
+      var canvasList = document.getElementsByClassName("particles-js-canvas-el");
+      var canvas = document.getElementById("canvas-save");
+      canvas.width  = canvasList[0].width;
+      canvas.height = canvasList[0].height;
+      var ctx = canvas.getContext("2d");
+      ctx.fillRect(0, 0, canvasList[0].width, canvasList[0].height);
+      ctx.drawImage(canvasList[0],0,0);
+      ctx.drawImage(canvasList[1],0,0);
+    }
+    function downloadCanvas(link, canvasId, filename) {
+      link.href = document.getElementById(canvasId).toDataURL();
+      link.download = filename;
+    }
+    document.getElementById('save').addEventListener('click', function() {
+      saveCanvas();  
+      downloadCanvas(this, 'canvas-save', 'spotify-constellation.glitch.me.png');
+    }, false);
+    
+  </script>
+  
 </body>
 
 </html>

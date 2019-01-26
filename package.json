@@ -1,7 +1,7 @@
 {
-  "name": "spotify-oauth",
-  "version": "0.0.1",
-  "description": "Easy authentication for Spotify",
+  "name": "songstellation",
+  "version": "1.0",
+  "description": "Make a constellation out of your Spotify top ten tracks.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
@@ -19,6 +19,7 @@
     "node",
     "glitch",
     "spotify",
-    "express"
+    "express",
+    "constellation"
   ]
 }

@@ -1,5 +1,4 @@
 particlesJS('bg-layer-0',
-
   {
     "particles": {
       "number": {

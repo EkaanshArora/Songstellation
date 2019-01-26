@@ -3,28 +3,25 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Spotify Constellation</title>
+  <title>Songstellation</title>
   <meta name="description" content="Make a constellation out of your spotify top ten tracks - Ekaansh Arora">
   <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
   <meta name="author" content="Ekaansh Arora" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link rel="stylesheet" media="screen" href="/teststyle.css">
-  <meta name="theme-color" content="#000">
-  <meta name="msapplication-navbutton-color" content="#000">
-  <meta name="apple-mobile-web-app-status-bar-style" content="#000">
+  <meta name="theme-color" content="#121218">
+  <meta name="msapplication-navbutton-color" content="#121218">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#121218">
 </head>
 
 <body>
-  <h1>
-    Spotify Constellation
-  </h1>
-  <a id="save">
-    (Download png)
-  </a>
-  <!-- particles.js container -->
+  
+  <h1>Songstellation</h1>
+  <a id="save">(Download image)</a>
   <div id="particles-js"></div>
   <div id="bg-layer-0"></div>
   <canvas id="canvas-save"></canvas>
+  
   <script>
     let titleArray = [];
         {{#each tracks}}
@@ -35,10 +32,11 @@
           artistArray.push("{{this}}");
         {{/each}}
   </script>
-  <!-- scripts -->
+  
   <script src="/particles.js"></script>
   <script src="/particles.min.js"></script>
   <script src="/app.js"></script>
+  
   <script>
     function saveCanvas()
     {
@@ -47,8 +45,13 @@
       canvas.width  = canvasList[0].width;
       canvas.height = canvasList[0].height;
       var ctx = canvas.getContext("2d");
+      ctx.fillStyle= "#121218";
       ctx.fillRect(0, 0, canvasList[0].width, canvasList[0].height);
       ctx.drawImage(canvasList[0],0,0);
+      ctx.font = imageFont;
+      ctx.textAlign = "center";
+      ctx.fillStyle= "white";
+      ctx.fillText("Music Constellation", canvasList[0].width/2, 100);
       ctx.drawImage(canvasList[1],0,0);
     }
     function downloadCanvas(link, canvasId, filename) {
@@ -59,9 +62,7 @@
       saveCanvas();  
       downloadCanvas(this, 'canvas-save', 'spotify-constellation.glitch.me.png');
     }, false);
-    
   </script>
-  
-</body>
 
+</body>
 </html>

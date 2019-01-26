@@ -1,6 +1,24 @@
-#main {
-    overflow-x: hidden;
-    overflow-y: hidden;
+html {
+    background-color: #121218;
+    color: white;
+    font-family: "Segoe UI", helvetica, sans-serif;
+}
+
+a {
+    color: white;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 1.5em;
+    padding: 7vh;
+    font-size: 3em;
+}
+
+#byline{
+  font-size: 1.3em;
+  text-align: center;
+  padding: 4vw;
 }
 
 .particles-js-canvas-el{
@@ -16,52 +34,20 @@
 .button {
     font-size: 30px;
     border-radius: 3px;
-    background-color: rgb(0, 0, 0, 0.3);
-    border: 1px solid grey;
-    box-shadow: 2px 2px teal;
+    background-color: #121218;
+    border: 2px solid white;
     cursor: pointer;
     padding: 1em;
-    width: 50vw;
+    width: 40vw;
     line-height: 1.5em;
     text-align: center;
     text-decoration: none;
+    margin: auto;
+    margin-top: 10vh;
 }
 
 .button:hover {
-    background-color: rgb(0, 0, 0, 0.5)
-}
-
-.button:active {
-    box-shadow: none
-}
-
-html {
-    background-color: black;
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-a {
-    color: white
-}
-
-p {
-    text-align: center;
-    font-size: 1.3em;
-    padding: 4vw;
-}
-
-h1 {
-    text-align: center;
-    margin-top: 1.2em;
-    padding: 10vh;
-    font-size: 2.5em;
-}
-
-.button {
-    text-align: center;
-    margin: auto;
-    margin-top: 10vh;
+    background-color: #080812;
 }
 
 #footer{
@@ -69,9 +55,7 @@ h1 {
   bottom: 5vh;
   right: 5vw;
 }
-#byline{
-  font-size: 1.3em;
-}
+
 @media only screen and (max-width: 600px) {
   h1 {
     margin-top: 0em;
